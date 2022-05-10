@@ -1,4 +1,4 @@
-package com.example.bankingapplication.service;
+package com.example.bankingapplication.serviceimpl;
 
 import java.util.List;
 
@@ -8,9 +8,10 @@ import com.example.bankingapplication.entity.CustomerAccount;
 import com.example.bankingapplication.mapper.CustomerAccountMapper;
 import com.example.bankingapplication.model.CustomerAccountModel;
 import com.example.bankingapplication.repository.CustomerAccountRepository;
+import com.example.bankingapplication.service.CustomerAccountService;
 
 @Service
-public class CustomerAccountServiceImpl {
+public class CustomerAccountServiceImpl implements CustomerAccountService{
 
 	private final CustomerAccountRepository customerAccountRepository;
 	private final CustomerAccountMapper customerAccountMapper;
@@ -20,22 +21,19 @@ public class CustomerAccountServiceImpl {
 		this.customerAccountMapper = customerAccountMapper;
 	}
 	
+	@Override
 	public CustomerAccountModel saveCustomerAccount(CustomerAccountModel customerAccountModel) {
 		CustomerAccount customerAccount = customerAccountMapper.customerAccountModelToCustomerAccount(customerAccountModel);
-//		customerAccount.setAccountNumber(customerAccountModel.getAccountNumber());
-//		customerAccount.setBranch(customerAccountModel.getBranch());
-//		customerAccount.setAccountBalance(customerAccountModel.getAccountBalance());
-//		customerAccount.setAccountType(customerAccountModel.getAccountType());
-//		customerAccount.setAccountStatus(customerAccountModel.getAccountStatus());
-//		customerAccount.setCustomer(customerAccountModel.getCustomer());
 		customerAccount = customerAccountRepository.save(customerAccount);
 		return customerAccountMapper.customerAccountTocustomerAccountModel(customerAccount);
 	}
 	
+	@Override
 	public List<CustomerAccountModel> getAllCustomerAccounts() {
 		return customerAccountMapper.customerAccountToCustomerAccountModel(customerAccountRepository.findAll());
 	}
 	
+	@Override
 	public CustomerAccountModel getCustomerAccountById(Integer id) {
 		return customerAccountMapper.customerAccountTocustomerAccountModel(customerAccountRepository.findById(id).get());
 	}
