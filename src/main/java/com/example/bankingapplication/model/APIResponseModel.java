@@ -17,5 +17,11 @@ public class APIResponseModel {
 	private HttpStatus status;
 	private String message;
 	private Object result;
-	
+
+	public APIResponseModel(HttpStatus status, String message, Object result) {
+		this.code = status.value();
+		this.status = status;
+		this.message = message;
+		this.result = result;
+	}
 }

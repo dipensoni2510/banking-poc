@@ -7,9 +7,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -27,12 +24,7 @@ import lombok.Setter;
 @Setter
 @Table(name="customer_account")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class CustomerAccount extends CommonPropertyEntity {
-
-	@Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-	@Column(name = "id")
-	private Integer id;
+public class CustomerAccount extends BaseEntity {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="customer_id")
@@ -57,12 +49,12 @@ public class CustomerAccount extends CommonPropertyEntity {
 	
 	@OneToMany(mappedBy="customerAccountFrom", fetch=FetchType.EAGER)
 //	@JsonIgnore
-	private List<Transection> transections = new ArrayList<Transection>();
+	private List<Transaction> transactions = new ArrayList<Transaction>();
 	
 	@OneToOne(fetch = FetchType.LAZY,
             cascade =  CascadeType.ALL,
             mappedBy = "customerAccountTo")
 //	@JsonIgnore
-	private Transection transection;
+	private Transaction transaction;
 	
 }

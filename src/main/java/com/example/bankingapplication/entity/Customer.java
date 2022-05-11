@@ -22,12 +22,7 @@ import lombok.Setter;
 @Setter
 @Table(name = "customer")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Customer extends CommonPropertyEntity {
-	
-	@Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-	@Column(name = "id")
-	private Integer id;
+public class Customer extends BaseEntity {
     
 	@Column(name = "first_name")
 	private String firstName;
