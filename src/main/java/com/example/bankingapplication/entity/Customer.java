@@ -55,6 +55,5 @@ public class Customer extends BaseEntity {
     private String password;
 	
 	@OneToMany(mappedBy="customer", fetch=FetchType.EAGER)
-//	@JsonIgnore
-	private List<CustomerAccount> customerAccount = new ArrayList<CustomerAccount>();
+	private List<CustomerAccount> customerAccount = new ArrayList<>();
 }

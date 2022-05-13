@@ -21,5 +21,5 @@ public class CustomerModel {
 	private String aadharCardNumber;
     private String userName;
     private String password;
-	private Set<CustomerAccount> customerAccount;
+	private Set<CustomerAccountModel> customerAccount;
 }
