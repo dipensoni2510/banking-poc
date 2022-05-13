@@ -20,7 +20,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name = "branch")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Branch extends BaseEntity {
 	
 	@Column(name = "name")
